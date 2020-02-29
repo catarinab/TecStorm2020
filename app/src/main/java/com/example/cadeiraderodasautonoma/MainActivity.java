@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         if (!bt.isEnabled()) {
             Intent ativ = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(ativ, 5);
+            listar();
         }
     }
 
