@@ -14,8 +14,6 @@ import java.util.Locale;
 
 public class Conexao extends AppCompatActivity {
 
-    public static final String TAG = "conexaoAtividade";
-
     String mensagem;
 
     @Override
@@ -25,7 +23,6 @@ public class Conexao extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         try {
             getSpeechInput();
@@ -81,28 +78,46 @@ public class Conexao extends AppCompatActivity {
 
     public void createNewMove(String message){
         try {
-            if (message.equals("parar") || message.equals("para") || message.equals("pare")) {
-                this.mensagem = "S";
-                enviar(this.mensagem);
+            switch (message){
+                case "parar":
+                case "para":
+                case "pare":
+                case "parares":
+                case "espera":
+                case "esperar":
+                case "cara":
+                    this.mensagem = "S";
+                    enviar(this.mensagem);
+                    break;
+                case "continua":
+                case "continuar":
+                case "anda":
+                case "andares":
+                case "andar":
+                case "frente":
+                case "move":
+                case "adiante":
+                case "mover":
+                    this.mensagem = "F";
+                    enviar(this.mensagem);
+                    break;
+                case("direita"):
+                    this.mensagem = "R";
+                    enviar(this.mensagem);
+                    break;
+                case("esquerda"):
+                    this.mensagem = "L";
+                    enviar(this.mensagem);
+                    break;
+                case("atrás"):
+                case("para tras"):
+                    this.mensagem = "B";
+                    enviar(this.mensagem);
+                    break;
+                default:
+                    getSpeechInput();
+                    break;
             }
-            else if (message.equals("continua") || message.equals("continuar") || message.equals("anda") || message.equals("andar")) {
-                this.mensagem = "F";
-                enviar(this.mensagem);
-            }
-            else if (message.equals("direita")) {
-                this.mensagem = "R";
-                enviar(this.mensagem);
-            }
-            else if (message.equals("esquerda")) {
-                this.mensagem = "L";
-                enviar(this.mensagem);
-            }
-            else if (message.equals("atrás")) {
-                this.mensagem = "B";
-                enviar(this.mensagem);
-            }
-            else System.out.println("nao deu");
-            getSpeechInput();
         }
         catch(Exception e) {
             e.printStackTrace();
